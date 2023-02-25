@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>FlixTube: Home</title>
+
+        <link rel="stylesheet" href="css/tailwind.min.css">
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+    <body>
+        <div class="flex flex-col">
+            <div class="border-b-2 bg-gray-100">
+                <div class="nav flex flex-row items-center mt-1 p-2">
+                    <div class="text-xl font-bold">
+                        FlixTube
+                    </div>
+                    <div class="ml-16 border-b-2 border-blue-600">
+                        <a href="/">Videos</a>
+                    </div>
+                    <div class="ml-4">
+                        <a href="/upload">Upload</a>
+                    </div>
+                    <div class="ml-4">
+                        <a href="/history">History</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-4">
+                <h1>Videos</h1>
+                <div id="video-list" class="m-4">
+                    {{#if videos}}
+                        {{#each videos}}
+                            <div class="mt-1">
+                                <a href="/video?id={{this._id}}">{{this.name}}</a> 
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        No videos uploaded yet.
+                    {{/if}}
+                </div>
+            </div>
+
+            <div id="ads" class="absolute bg-gray-300 bottom-0 right-0 p-3 rounded-xl w-[300px]">
+                <div class="flex-col">
+                    <div class="flex">
+                        <h1 class="font-semibold">Advertising:</h1>
+                        <button id="close-ads" class="ml-32 font-bold text-xl text-gray-700" onclick="closeAdvertising()">X</button>
+                    </div>
+                    <a href={{ ads.url }} target="_blank" class="flex items-center mt-2">
+                        <img class="w-10 h-10" src={{ ads.imageUrl }} alt="image" >
+                        <span class="text-black ml-4">{{ ads.name }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="js/ads.js"></script>
+</html>
